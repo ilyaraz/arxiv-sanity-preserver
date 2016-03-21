@@ -1,8 +1,0 @@
-tmp/
-pdf/
-txt/
-static/thumbs/
-*.p
-*.pyc
-as.db
-secret_key.txt
