@@ -12,11 +12,14 @@ numok = 0
 numtot = 0
 db = pickle.load(open('db.p', 'rb'))
 have = os.listdir('pdf') # get list of all pdfs we already have
-for pid,j in db.iteritems():
+aux = db.items()
+random.shuffle(aux)
+for pid,j in aux:
   
   pdfs = [x['href'] for x in j['links'] if x['type'] == 'application/pdf']
   assert len(pdfs) == 1
   pdf_url = pdfs[0] + '.pdf'
+  print pdf_url
   basename = pdf_url.split('/')[-1]
   fname = os.path.join('pdf', basename)
 
@@ -35,6 +38,8 @@ for pid,j in db.iteritems():
   except Exception, e:
     print 'error downloading: ', pdf_url
     print e
+    while True:
+      pass
   
   print '%d/%d of %d downloaded ok.' % (numok, numtot, len(db))
   
